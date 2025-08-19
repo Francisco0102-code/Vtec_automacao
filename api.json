@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "nome": "Notebook Dell Inspiron 15",
+    "descricao": "Notebook com processador Intel i5, 8GB RAM e SSD 256GB",
+    "preco": 3500.00,
+    "categoria": "Informática",
+    "estoque": 12,
+    "imagem": "https://exemplo.com/notebook-dell.jpg"
+  },
+  {
+    "id": 2,
+    "nome": "Smartphone Samsung Galaxy S23",
+    "descricao": "Smartphone Android com câmera tripla e 128GB de armazenamento",
+    "preco": 4200.00,
+    "categoria": "Celulares",
+    "estoque": 25,
+    "imagem": "https://exemplo.com/galaxy-s23.jpg"
+  },
+  {
+    "id": 3,
+    "nome": "Teclado Mecânico Redragon Kumara",
+    "descricao": "Teclado gamer mecânico com iluminação RGB",
+    "preco": 280.00,
+    "categoria": "Periféricos",
+    "estoque": 40,
+    "imagem": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcROjr1oaY81E-dp-zPzFU69gPh8EFqxvbJM2DpaGS8X8E8ZoY16RGA2SxH7-OvRulBTI1XAfoeGECZEKm5uMa6QzTeIY7gxk2aNGjRs78FTuqhAtFZxYPgr8g"
+  },
+  {
+    "id": 4,
+    "nome": "Cadeira Gamer ThunderX3",
+    "descricao": "Cadeira ergonômica com ajuste de altura e inclinação",
+    "preco": 1200.00,
+    "categoria": "Móveis",
+    "estoque": 8,
+    "imagem": "https://exemplo.com/cadeira-gamer.jpg"
+  },
+  {
+    "id": 5,
+    "nome": "Monitor LG Ultrawide 29''",
+    "descricao": "Monitor Full HD Ultrawide com painel IPS",
+    "preco": 1500.00,
+    "categoria": "Monitores",
+    "estoque": 15,
+    "imagem": "https://exemplo.com/monitor-lg.jpg"
+  }
+]
