@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image, Dimensions, Modal } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import api from '../../api.json';
-       import { router } from 'expo-router';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  FlatList,
+  Image,
+  Dimensions,
+  Modal,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
+import api from "../../api.json";
 
 interface Produto {
   id: number;
@@ -14,14 +23,20 @@ interface Produto {
 
 const Index: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [screenWidth, setScreenWidth] = useState(Dimensions.get('window').width);
+  const [screenWidth, setScreenWidth] = useState(
+    Dimensions.get("window").width
+  );
 
-  // Define número de colunas baseado na largura da tela
+  // Número de colunas baseado na largura da tela
   const numColumns = screenWidth > 800 ? 3 : screenWidth > 500 ? 2 : 1;
 
-  // Calcula largura do card e aplica largura máxima
-  const CARD_WIDTH = Math.min((screenWidth - (numColumns + 1) * 10) / numColumns, 250);
+  // Largura máxima de cada card
+  const CARD_WIDTH = Math.min(
+    (screenWidth - (numColumns + 1) * 10) / numColumns,
+    250
+  );
 
+  // Renderiza item
   const renderItem = ({ item }: { item: Produto }) => (
     <View style={[styles.produtoCard, { width: CARD_WIDTH }]}>
       <Image source={{ uri: item.imagem }} style={styles.produtoImagem} />
@@ -43,7 +58,7 @@ const Index: React.FC = () => {
       <View style={styles.navbar}>
         <Text style={styles.logo}>Vtec</Text>
 
-        {/* Hamburger menu */}
+        {/* Botão do menu */}
         <TouchableOpacity onPress={() => setMenuOpen(true)}>
           <Ionicons name="menu" size={28} color="#007BFF" />
         </TouchableOpacity>
@@ -62,38 +77,59 @@ const Index: React.FC = () => {
           onPress={() => setMenuOpen(false)}
         >
           <View style={styles.menu}>
-    
-
-{['Suporte','Configurações','Sobre','Logout','Notificações','Perfil','Ajuda','Feedback','Produtos'].map((item, index) => (
-  <TouchableOpacity
-    key={index}
-    style={styles.menuItem}
-    onPress={() => {
-      setMenuOpen(false);
-      switch(item) {
-        case 'Suporte':
-          router.push('/suporte');
-          break;
-        case 'Configurações':
-          router.push('/configuracoes');
-          break;
-        case 'Sobre':
-          router.push('/sobre');
-          break;
-        case 'Logout':
-          router.push('/login');
-          break;
-        // adicione as outras rotas conforme necessário
-        default:
-          break;
-      }
-    }}
-  >
-    <Text style={styles.menuText}>{item}</Text>
-  </TouchableOpacity>
-))}
-
-       
+            {[
+              "Suporte",
+              "Configurações",
+              "Sobre",
+              "Logout",
+              "Notificações",
+              "Perfil",
+              "Ajuda",
+              "Feedback",
+              "Produtos",
+            ].map((item, index) => (
+              <TouchableOpacity
+                key={index}
+                style={styles.menuItem}
+                onPress={() => {
+                  setMenuOpen(false);
+                  switch (item) {
+                    case "Suporte":
+                      router.push("/pages/Suporter");
+                      break;
+                    case "Configurações":
+                      router.push("/pages/Settings");
+                      break;
+                    case "Sobre":
+                      router.push("/pages/About");
+                      break;
+                    case "Logout":
+                      router.push("/pages/Logout");
+                      break;
+                    case "Notificações":
+                      router.push("/pages/Notifications");
+                      break;
+                    case "Perfil":
+                      router.push("/pages/Profile");
+                      break;
+                    case "Ajuda":
+                      router.push("/pages/Help");
+                      break;
+                    case "Feedback":
+                      router.push("/pages/Feedback");
+                      break;
+                    case "Produtos":
+                      router.push("/pages/Products");
+                      break;
+                    // Adicione outras rotas conforme necessário
+                    default:
+                      break;
+                  }
+                }}
+              >
+                <Text style={styles.menuText}>{item}</Text>
+              </TouchableOpacity>
+            ))}
           </View>
         </TouchableOpacity>
       </Modal>
@@ -105,8 +141,13 @@ const Index: React.FC = () => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
         numColumns={numColumns}
+        key={numColumns} // 🔑 força recriação ao mudar colunas
         contentContainerStyle={styles.produtosContainer}
-        columnWrapperStyle={numColumns > 1 ? { justifyContent: 'space-between', marginBottom: 15 } : undefined}
+        columnWrapperStyle={
+          numColumns > 1
+            ? { justifyContent: "space-between", marginBottom: 15 }
+            : undefined
+        }
       />
     </View>
   );
@@ -114,6 +155,8 @@ const Index: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#f5f5f5", paddingHorizontal: 10 },
+
+  // Navbar
   navbar: {
     flexDirection: "row",
     alignItems: "center",
@@ -125,10 +168,19 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginVertical: 10,
     paddingHorizontal: 10,
-    elevation: 2
+    elevation: 2,
   },
   logo: { fontSize: 22, fontWeight: "bold", color: "#007BFF" },
-  sectionTitle: { fontSize: 20, fontWeight: "bold", marginVertical: 10, color: "#333" },
+
+  // Sessões
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginVertical: 10,
+    color: "#333",
+  },
+
+  // Produtos
   produtosContainer: { paddingBottom: 20 },
   produtoCard: {
     flex: 1,
@@ -138,12 +190,12 @@ const styles = StyleSheet.create({
     borderColor: "#ddd",
     padding: 10,
     marginHorizontal: 5,
-    elevation: 2
+    elevation: 2,
   },
   produtoImagem: {
-    width: '100%',
+    width: "100%",
     aspectRatio: 1,
-    resizeMode: 'cover',
+    resizeMode: "cover",
     borderRadius: 8,
     marginBottom: 5,
   },
@@ -154,21 +206,21 @@ const styles = StyleSheet.create({
   // Menu
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.4)',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-end',
+    backgroundColor: "rgba(0,0,0,0.4)",
+    justifyContent: "flex-start",
+    alignItems: "flex-end",
   },
   menu: {
-    width: '70%',
+    width: "70%",
     maxWidth: 300,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     padding: 20,
     paddingTop: 40,
     borderBottomLeftRadius: 10,
     borderTopLeftRadius: 10,
     elevation: 5,
   },
-  menuText: { fontSize: 16, color: '#007BFF', marginVertical: 10 },
+  menuText: { fontSize: 16, color: "#007BFF", marginVertical: 10 },
   menuItem: { marginBottom: 5 },
 });
 
